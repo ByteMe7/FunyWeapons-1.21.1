@@ -23,7 +23,24 @@ import java.util.List;
 
 public class HammerItem extends MiningToolItem {
     public HammerItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
-        super(material, BlockTags.PICKAXE_MINEABLE, attackDamage, attackSpeed, settings);
+        super(material, BlockTags.PICKAXE_MINEABLE, settings
+                .attributeModifiers(createAttributeModifiers(material, attackDamage, attackSpeed)));
+    }
+    public static AttributeModifiersComponent createAttributeModifiers(ToolMaterial material, int baseAttackDamage, float attackSpeed) {
+        return AttributeModifiersComponent.builder()
+                .add(
+                        EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                        new EntityAttributeModifier(
+                                BASE_ATTACK_DAMAGE_MODIFIER_ID, (double)((float)baseAttackDamage + material.getAttackDamage()), EntityAttributeModifier.Operation.ADD_VALUE
+                        ),
+                        AttributeModifierSlot.MAINHAND
+                )
+                .add(
+                        EntityAttributes.GENERIC_ATTACK_SPEED,
+                        new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, (double)attackSpeed, EntityAttributeModifier.Operation.ADD_VALUE),
+                        AttributeModifierSlot.MAINHAND
+                )
+                .build();
     }
 
 

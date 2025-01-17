@@ -1,8 +1,6 @@
 package net.funkystudios.funkyweapons.block.custom;
 
 import net.funkystudios.funkyweapons.item.ModItems;
-import net.funkystudios.funkyweapons.util.IColoredItem;
-import net.funkystudios.funkyweapons.util.ICropBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
@@ -11,9 +9,9 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 
-public class PablanoCropBlock extends CropBlock implements ICropBlock {
-    public static final int MAX_AGE = 5;
-    public static final IntProperty AGE = Properties.AGE_5;
+public class PablanoCropBlock extends CropBlock  {
+    public static final int MAX_AGE = 6;
+    public static final IntProperty AGE = IntProperty.of("age", 0, 6);
     public PablanoCropBlock(Settings settings) {
         super(settings);
     }
@@ -38,8 +36,4 @@ public class PablanoCropBlock extends CropBlock implements ICropBlock {
         builder.add(AGE);
     }
 
-    @Override
-    public IntProperty getAGE() {
-        return AGE;
-    }
 }

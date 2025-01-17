@@ -68,6 +68,7 @@ public class ModItems {
     public static final Item CLAY_MUG;
     public static final Item MUG;
     public static final Item HOT_CHOCOLATE;
+    public static final Item PABLANO_PEPPER;
 
 
     private static Item registerItem(String name, Item item){
@@ -274,6 +275,8 @@ public class ModItems {
 
         CLAY_MUG = registerItem("clay_mug", new Item(new Item.Settings()));
         MUG = registerItem("mug", new Item(new Item.Settings()));
+
         HOT_CHOCOLATE = registerItem("hot_chocolate", new DrinkItem(60, MUG, new Item.Settings().maxCount(16).food(ModFoodComponents.HOT_CHOCOLATE)));
+        PABLANO_PEPPER = registerItem("pablano_pepper", new Item(new Item.Settings()));
     }
 }
