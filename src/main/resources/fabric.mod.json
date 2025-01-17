@@ -20,6 +20,9 @@
 		],
 		"fabric-datagen": [
 			"net.funkystudios.funkyweapons.FunkyWeaponsDataGenerator"
+		],
+		"client" : [
+			"net.funkystudios.funkyweapons.FunkyWeaponsClient"
 		]
 	},
 	"mixins": [
