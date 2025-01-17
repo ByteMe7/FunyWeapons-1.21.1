@@ -2,8 +2,10 @@ package net.funkystudios.funkyweapons;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.funkystudios.funkyweapons.alchemy.potion.ModPotions;
 import net.funkystudios.funkyweapons.block.ModBlocks;
 import net.funkystudios.funkyweapons.fluid.ModFluids;
+import net.funkystudios.funkyweapons.item.ModItemGroups;
 import net.funkystudios.funkyweapons.item.ModItems;
 import net.funkystudios.funkyweapons.particle.ModParticles;
 import org.slf4j.Logger;
@@ -19,11 +21,11 @@ public class FunkyWeapons implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
 		ModBlocks.register();
 		ModItems.register();
+		ModItemGroups.register();
+		ModPotions.register();
+
 
 		ModParticles.registerParticles();
 

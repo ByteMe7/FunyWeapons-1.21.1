@@ -5,9 +5,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.funkystudios.funkyweapons.block.ModBlocks;
 import net.funkystudios.funkyweapons.item.ModItems;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Models;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LeveledCauldronBlock;
+import net.minecraft.data.client.*;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
@@ -24,6 +25,9 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TURQUOISE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_TURQUOISE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TURQUOISE_ALLOY_BLOCK);
+
+        registerCauldrons(blockStateModelGenerator,
+                ModBlocks.APACHE_TEAR_CAULDRON, ModBlocks.OBSIDIAN_TEAR_CAULDRON, ModBlocks.RUSTY_WATER_CAULDRON);
 
     }
 
@@ -87,5 +91,30 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.TURQUOISE_HAMMER, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.CHAINSAW, Models.HANDHELD);
+
+        itemModelGenerator.register();
     }
+
+    private static void registerCauldrons(BlockStateModelGenerator blockStateModelGenerator, Block... blocks){
+        for(Block block : blocks){
+            registerWaterCauldronLikeModel(blockStateModelGenerator, block);
+        }
+    }
+
+
+    private static void registerWaterCauldronLikeModel(BlockStateModelGenerator blockStateModelGenerator, Block block){
+
+        blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(BlockStateVariantMap.create(LeveledCauldronBlock.LEVEL)
+                .register((Integer)1, BlockStateVariant.create()
+                        .put(VariantSettings.MODEL,
+                                Models.TEMPLATE_CAULDRON_LEVEL1.upload(block, "_level1", TextureMap.cauldron(TextureMap.getSubId(Blocks.WATER, "_still")), blockStateModelGenerator.modelCollector)))
+                .register((Integer)2, BlockStateVariant.create()
+                        .put(VariantSettings.MODEL,
+                                Models.TEMPLATE_CAULDRON_LEVEL2.upload(block, "_level2", TextureMap.cauldron(TextureMap.getSubId(Blocks.WATER, "_still")), blockStateModelGenerator.modelCollector)))
+                .register((Integer)3, BlockStateVariant.create()
+                        .put(VariantSettings.MODEL,
+                                Models.TEMPLATE_CAULDRON_FULL.upload(block, "_full", TextureMap.cauldron(TextureMap.getSubId(Blocks.WATER, "_still")), blockStateModelGenerator.modelCollector)))));
+
+    }
+
 }
