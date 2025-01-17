@@ -2,13 +2,13 @@ package net.funkystudios.funkyweapons.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.funkystudios.funkyweapons.FunkyWeapons;
+import net.funkystudios.funkyweapons.fluid.ModFluids;
 import net.funkystudios.funkyweapons.item.custom.*;
+import net.funkystudios.funkyweapons.util.Constants.Colors;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -69,6 +69,9 @@ public class ModItems {
     public static final Item MUG;
     public static final Item HOT_CHOCOLATE;
     public static final Item PABLANO_PEPPER;
+    public static final Item APACHE_TEARS_BUCKET;
+    public static final Item OBSIDIAN_TEARS_BUCKET;
+    public static final Item RUSTY_WATER_BUCKET;
 
 
     private static Item registerItem(String name, Item item){
@@ -278,5 +281,9 @@ public class ModItems {
 
         HOT_CHOCOLATE = registerItem("hot_chocolate", new DrinkItem(60, MUG, new Item.Settings().maxCount(16).food(ModFoodComponents.HOT_CHOCOLATE)));
         PABLANO_PEPPER = registerItem("pablano_pepper", new Item(new Item.Settings()));
+
+        APACHE_TEARS_BUCKET = registerItem("apache_tears_bucket", new CustomBucketItem(ModFluids.APACHE_TEARS_STILL, Colors.APACHE_TEARS.getIntColor(), new Item.Settings()));
+        OBSIDIAN_TEARS_BUCKET = registerItem("obsidian_tears_bucket", new CustomBucketItem(ModFluids.OBSIDIAN_TEARS_STILL, Colors.OBSIDIAN_TEARS.getIntColor(), new Item.Settings()));
+        RUSTY_WATER_BUCKET = registerItem("rusty_water_bucket", new CustomBucketItem(ModFluids.RUSTY_WATER_STILL, Colors.RUSTY_WATER.getIntColor(), new Item.Settings()));
     }
 }

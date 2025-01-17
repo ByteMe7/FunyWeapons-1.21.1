@@ -1,7 +1,8 @@
-package net.funkystudios.funkyweapons.fluid;
+package net.funkystudios.funkyweapons.fluid.custom;
 
 
 import net.funkystudios.funkyweapons.block.ModBlocks;
+import net.funkystudios.funkyweapons.fluid.ModFluids;
 import net.funkystudios.funkyweapons.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -79,7 +80,7 @@ public abstract class ApacheTearsFluid extends FlowableFluid {
     }
 
     public BlockState toBlockState(FluidState state) {
-        return ModBlocks.APACHE_TEARS_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
+        return ModBlocks.APACHE_TEARS_FLUID_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
     }
 
     public boolean matchesType(Fluid fluid) {
@@ -120,6 +121,11 @@ public abstract class ApacheTearsFluid extends FlowableFluid {
             return false;
         }
 
+        @Override
+        protected int getMaxFlowDistance(WorldView world) {
+            return 4;
+        }
+
         public int getLevel(FluidState state) {
             return (Integer)state.get(LEVEL);
         }
@@ -134,6 +140,11 @@ public abstract class ApacheTearsFluid extends FlowableFluid {
         @Override
         protected boolean isInfinite(World world) {
             return false;
+        }
+
+        @Override
+        protected int getMaxFlowDistance(WorldView world) {
+            return 4;
         }
 
         public int getLevel(FluidState state) {

@@ -1,7 +1,8 @@
-package net.funkystudios.funkyweapons.fluid;
+package net.funkystudios.funkyweapons.fluid.custom;
 
 
 import net.funkystudios.funkyweapons.block.ModBlocks;
+import net.funkystudios.funkyweapons.fluid.ModFluids;
 import net.funkystudios.funkyweapons.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,6 +18,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -28,18 +30,18 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.Random;
 
-public abstract class RustyWaterFluid extends FlowableFluid {
+public abstract class ObsidianTearsFluid extends FlowableFluid {
 
     public Fluid getFlowing() {
-        return ModFluids.RUSTY_WATER_FLOWING;
+        return ModFluids.OBSIDIAN_TEARS_FLOWING;
     }
 
     public Fluid getStill() {
-        return ModFluids.RUSTY_WATER_STILL;
+        return ModFluids.OBSIDIAN_TEARS_STILL;
     }
 
     public Item getBucketItem() {
-        return ModItems.RUSTY_WATER_BUCKET;
+        return ModItems.OBSIDIAN_TEARS_BUCKET;
     }
 
     public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
@@ -75,19 +77,19 @@ public abstract class RustyWaterFluid extends FlowableFluid {
     }
 
     public int getFlowSpeed(WorldView world) {
-        return 1;
+        return 4;
     }
 
     public BlockState toBlockState(FluidState state) {
-        return ModBlocks.RUSTY_WATER_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
+        return ModBlocks.OBSIDIAN_TEARS_FLUID_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
     }
 
     public boolean matchesType(Fluid fluid) {
-        return fluid == ModFluids.RUSTY_WATER_STILL || fluid == ModFluids.RUSTY_WATER_FLOWING;
+        return fluid == ModFluids.OBSIDIAN_TEARS_STILL || fluid == ModFluids.OBSIDIAN_TEARS_FLOWING;
     }
 
     public int getLevelDecreasePerBlock(WorldView world) {
-        return 1;
+        return 2;
     }
 
     public int getTickRate(WorldView world) {
@@ -103,7 +105,7 @@ public abstract class RustyWaterFluid extends FlowableFluid {
         return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
     }
 
-    public static class Flowing extends RustyWaterFluid {
+    public static class Flowing extends ObsidianTearsFluid {
 
         protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
             super.appendProperties(builder);
@@ -120,6 +122,11 @@ public abstract class RustyWaterFluid extends FlowableFluid {
             return false;
         }
 
+        @Override
+        protected int getMaxFlowDistance(WorldView world) {
+            return 4;
+        }
+
         public int getLevel(FluidState state) {
             return (Integer)state.get(LEVEL);
         }
@@ -129,15 +136,20 @@ public abstract class RustyWaterFluid extends FlowableFluid {
         }
     }
 
-    public static class Still extends RustyWaterFluid {
+    public static class Still extends ObsidianTearsFluid {
 
         @Override
         protected boolean isInfinite(World world) {
             return false;
         }
 
-        public int getLevel(FluidState state) {
+        @Override
+        protected int getMaxFlowDistance(WorldView world) {
             return 4;
+        }
+
+        public int getLevel(FluidState state) {
+            return 8;
         }
 
         @Override

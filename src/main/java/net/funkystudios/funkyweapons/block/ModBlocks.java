@@ -2,11 +2,12 @@ package net.funkystudios.funkyweapons.block;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.funkystudios.funkyweapons.FunkyWeapons;
+import net.funkystudios.funkyweapons.block.custom.ApacheTearsCauldronBlock;
+import net.funkystudios.funkyweapons.block.custom.ObsidianTearsCauldronBlock;
+import net.funkystudios.funkyweapons.block.custom.RustyWaterCauldronBlock;
 import net.funkystudios.funkyweapons.block.custom.TurquoiseObsidianBlock;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ExperienceDroppingBlock;
+import net.funkystudios.funkyweapons.fluid.ModFluids;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -24,6 +25,12 @@ public class ModBlocks {
     public static final Block TURQUOISE_CRYING_OBSIDIAN;
     public static final Block TURQUOISE_ORE;
     public static final Block DEEPSLATE_TURQUOISE_ORE;
+    public static final Block APACHE_TEARS_FLUID_BLOCK;
+    public static final Block APACHE_TEAR_CAULDRON;
+    public static final Block OBSIDIAN_TEARS_FLUID_BLOCK;
+    public static final Block OBSIDIAN_TEAR_CAULDRON;
+    public static final Block RUSTY_WATER_FLUID_BLOCK;
+    public static final Block RUSTY_WATER_CAULDRON;
 
 
     private static Block registerBlock(String name, Block block){
@@ -70,5 +77,12 @@ public class ModBlocks {
 
         TURQUOISE_ORE = registerBlock("turquoise_ore", new ExperienceDroppingBlock(UniformIntProvider.create(2,5), AbstractBlock.Settings.copy(Blocks.COPPER_ORE)));
         DEEPSLATE_TURQUOISE_ORE = registerBlock("deepslate_turquoise_ore", new ExperienceDroppingBlock(UniformIntProvider.create(2,5), AbstractBlock.Settings.copy(Blocks.DEEPSLATE_COPPER_ORE)));
+
+        APACHE_TEARS_FLUID_BLOCK = registerBlockWithoutBlockItem("apache_tears_fluid_block", new FluidBlock(ModFluids.APACHE_TEARS_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
+        APACHE_TEAR_CAULDRON = registerBlockWithoutBlockItem("apache_tears_cauldron_block", new ApacheTearsCauldronBlock());
+        OBSIDIAN_TEARS_FLUID_BLOCK = registerBlockWithoutBlockItem("obsidian_tears_fluid_block", new FluidBlock(ModFluids.OBSIDIAN_TEARS_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
+        OBSIDIAN_TEAR_CAULDRON = registerBlockWithoutBlockItem("obsidian_tears_cauldron_block", new ObsidianTearsCauldronBlock());
+        RUSTY_WATER_FLUID_BLOCK = registerBlockWithoutBlockItem("rusty_water_fluid_block", new FluidBlock(ModFluids.RUSTY_WATER_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
+        RUSTY_WATER_CAULDRON = registerBlockWithoutBlockItem("rusty_water_cauldron_block", new RustyWaterCauldronBlock());
     }
 }

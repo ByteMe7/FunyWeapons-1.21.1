@@ -17,24 +17,24 @@ public class TieredBowItem extends BowItem {
 
     private final ToolMaterial material;
     public TieredBowItem(ToolMaterial material, Settings settings) {
-        super(settings.maxDamage(material.durability()).repairable(material.repairItems()));
+        super(settings.maxDamage(material.getDurability()));
         this.material = material;
     }
 
 
     @Override
-    public boolean onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (!(user instanceof PlayerEntity playerEntity)) {
-            return false;
+            return;
         } else {
             ItemStack itemStack = playerEntity.getProjectileType(stack);
             if (itemStack.isEmpty()) {
-                return false;
+                return;
             } else {
                 int i = this.getMaxUseTime(stack, user) - remainingUseTicks;
-                float f = getPullProgress(i) * material.speed();
+                float f = getPullProgress(i) * material.getMiningSpeedMultiplier();
                 if ((double)f < 0.1) {
-                    return false;
+                    return;
                 } else {
                     List<ItemStack> list = load(stack, itemStack, playerEntity);
                     if (world instanceof ServerWorld serverWorld && !list.isEmpty()) {
@@ -52,7 +52,7 @@ public class TieredBowItem extends BowItem {
                             1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F
                     );
                     playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-                    return true;
+                    return;
                 }
             }
         }

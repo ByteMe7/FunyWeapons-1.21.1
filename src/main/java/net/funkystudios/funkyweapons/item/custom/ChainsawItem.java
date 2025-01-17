@@ -23,7 +23,7 @@ import java.util.List;
 public class ChainsawItem extends AxeItem {
     private static final int range = 20;
     public ChainsawItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
-        super(material, attackDamage, attackSpeed,settings);
+        super(material, settings.attributeModifiers(createAttributeModifiers(material, attackDamage, attackSpeed)));
     }
 
     public static AttributeModifiersComponent createAttributeModifiers(ToolMaterial material, int baseAttackDamage, float attackSpeed) {

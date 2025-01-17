@@ -24,6 +24,7 @@ public class FunkyWeapons implements ModInitializer {
 		// Proceed with mild caution.
 		ModBlocks.register();
 		ModItems.register();
+
 		ModParticles.registerParticles();
 
 		LOGGER.info("Hello Fabric world!");

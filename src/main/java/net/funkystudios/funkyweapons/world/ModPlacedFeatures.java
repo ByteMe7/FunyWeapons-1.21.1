@@ -27,7 +27,7 @@ public class ModPlacedFeatures {
                          HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))));
     }
     public static RegistryKey<PlacedFeature> registerKey(String name) {
-        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(FunkyWeapons.MOD_ID, name));
+        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(FunkyWeapons.MOD_ID, name));
     }
 
     private static void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key, RegistryEntry<ConfiguredFeature<?, ?>> configuration,
