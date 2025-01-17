@@ -3,38 +3,41 @@ package net.funkystudios.funkyweapons.alchemy.potion;
 import net.funkystudios.funkyweapons.FunkyWeapons;
 import net.funkystudios.funkyweapons.alchemy.effect.ModEffects;
 import net.funkystudios.funkyweapons.item.ModItems;
-import net.funkystudios.funkyweapons.mixin.BrewingRecipeRegistryMixin;
+import static net.funkystudios.funkyweapons.util.NumberFuctions.timeInTicks;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import net.funkystudios.funkyweapons.util.Constants.StatusEffects;
 
 public class ModPotions {
 
 
-    public static Potion OBSIDIAN_TEARS, APACHE_TEARS, BLEEDING, SUGAR_RUSH;
+    public final static RegistryEntry<Potion> OBSIDIAN_TEARS;
+    public final static RegistryEntry<Potion> APACHE_TEARS;
+    public final static RegistryEntry<Potion> BLEEDING;
+    public final static RegistryEntry<Potion> SUGAR_RUSH;
 
-    public static Potion registerPotion(String name, StatusEffectInstance effect){
-        return Registry.register(Registries.POTION, new Identifier(FunkyWeapons.MOD_ID, name),
-                new Potion(effect));
+    private static RegistryEntry<Potion> register(String name, Potion potion){
+        return Registry.registerReference(Registries.POTION, Identifier.of(FunkyWeapons.MOD_ID, name), potion);
     }
-    public static void registerPotions(){
-        OBSIDIAN_TEARS = registerPotion("obsidian_tears",
-                new StatusEffectInstance(ModEffects.OBSIDIAN_TEARS));
-        APACHE_TEARS = registerPotion("apache_tears",new StatusEffectInstance(ModEffects.APACHE_TEARS));
-        BLEEDING = registerPotion("bleeding", new StatusEffectInstance(ModEffects.BLEEDING));
-        SUGAR_RUSH = registerPotion("sugar_rush", StatusEffects.Mod.SUGAR_RUSH);
+    public static void register(){
 
-        registerPotionRecipes();
     }
-    private static void registerPotionRecipes(){
-        BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(Potions.REGENERATION, Items.CHORUS_FLOWER,
-                ModPotions.OBSIDIAN_TEARS);
-        BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(Potions.THICK, ModItems.RUST_DUST, ModPotions.BLEEDING);
-        BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(Potions.SWIFTNESS, ModItems.CANDY_CANE, ModPotions.SUGAR_RUSH);
+
+    static {
+        OBSIDIAN_TEARS = register("obsidian_tears",
+                new Potion(new StatusEffectInstance(ModEffects.OBSIDIAN_TEARS, timeInTicks(40))));
+        APACHE_TEARS = register("apache_tears",
+                new Potion(new StatusEffectInstance(ModEffects.APACHE_TEARS, timeInTicks(40))));
+        BLEEDING = register("bleeding",
+                new Potion(new StatusEffectInstance(ModEffects.BLEEDING, timeInTicks(40))));
+        SUGAR_RUSH = register("sugar_rush",
+                new Potion(new StatusEffectInstance(ModEffects.SUGAR_RUSH, timeInTicks(40))));
     }
+
 }

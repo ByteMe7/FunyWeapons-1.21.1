@@ -3,17 +3,7 @@ package net.funkystudios.funkyweapons.util;
 import java.awt.*;
 
 public class NumberFuctions {
-    public static class Random {
-        public static int random(int min, int max){
-            return (int) ((Math.random()) * (max - min) + min);
-        }
-        public static double random(double min, double max){
-            return (double) (Math.random() * (max - min) + min);
-        }
-        public static float random(float min, float max){
-            return (float) (Math.random() * (max - min) + min);
-        }
-    }
+
 
     public static class Converters {
         final static int SECONDS_TO_TICKS = 20;
@@ -49,6 +39,16 @@ public class NumberFuctions {
             return totalSeconds * SECONDS_TO_TICKS;
         }
 
+    }
+
+    public static int timeInTicks(int s){
+        return s * 20;
+    }
+    public static int timeInTicks(int s, int m){
+        return timeInTicks(s + (m * 60));
+    }
+    public static int timeInTicks(int s, int m, int h){
+        return timeInTicks(s, m + h * 60);
     }
 
 

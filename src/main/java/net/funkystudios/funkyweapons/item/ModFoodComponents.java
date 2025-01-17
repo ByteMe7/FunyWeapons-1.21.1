@@ -1,12 +1,11 @@
 package net.funkystudios.funkyweapons.item;
 
 import net.funkystudios.funkyweapons.util.Constants;
-import net.minecraft.component.type.ConsumableComponent;
-import net.minecraft.component.type.ConsumableComponents;
+
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
+
 
 public class ModFoodComponents {
 

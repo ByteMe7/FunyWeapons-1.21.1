@@ -79,7 +79,7 @@ public class ModItems {
     }
 
     private static Item registerSwordItem(String name, ToolMaterial material, Item.Settings settings){
-        return registerItem(name, new SwordItem(material, 3, -2.4F, settings));
+        return registerItem(name, new SwordItem(material, settings.attributeModifiers(SwordItem.createAttributeModifiers(material, 3, -2.4F))));
     }
 
     private static Item registerAxeItem(String name, ToolMaterial material){
@@ -87,7 +87,7 @@ public class ModItems {
     }
 
     private static Item registerAxeItem(String name, ToolMaterial material, Item.Settings settings){
-        return registerItem(name, new AxeItem(material, 6, -3.2F, settings));
+        return registerItem(name, new AxeItem(material, settings.attributeModifiers(AxeItem.createAttributeModifiers(material, 6, -3.2F))));
     }
 
     private static Item registerPickaxeItem(String name, ToolMaterial material){
@@ -95,7 +95,7 @@ public class ModItems {
     }
 
     private static Item registerPickaxeItem(String name, ToolMaterial material, Item.Settings settings){
-        return registerItem(name, new PickaxeItem(material, 1, -2.8F, settings));
+        return registerItem(name, new PickaxeItem(material, settings.attributeModifiers(PickaxeItem.createAttributeModifiers(material, 1, -2.8F))));
     }
 
     private static Item registerShovelItem(String name, ToolMaterial material){
@@ -103,7 +103,7 @@ public class ModItems {
     }
 
     private static Item registerShovelItem(String name, ToolMaterial material, Item.Settings settings){
-        return registerItem(name, new ShovelItem(material, 1.5F, -3.0F, settings));
+        return registerItem(name, new ShovelItem(material, settings.attributeModifiers(ShovelItem.createAttributeModifiers(material, 1.5F, -3.0F))));
     }
 
     private static Item registerHoeItem(String name, ToolMaterial material){
@@ -111,7 +111,7 @@ public class ModItems {
     }
 
     private static Item registerHoeItem(String name, ToolMaterial material, Item.Settings settings){
-        return registerItem(name, new HoeItem(material, 0, -3.0F, settings));
+        return registerItem(name, new HoeItem(material, settings.attributeModifiers(HoeItem.createAttributeModifiers(material, 0, -3.0F))));
     }
 
     private static Item registerHammerItem(String name, ToolMaterial material){
@@ -220,15 +220,15 @@ public class ModItems {
         TURQUOISE_HOE = registerHoeItem("turquoise_hoe", ModToolMaterials.TURQUOISE);
         TURQUOISE_HAMMER = registerHammerItem("turquoise_hammer", ModToolMaterials.TURQUOISE);
 
-        CANDY_CANE = registerItem("candy_cane", new Item(new Item.Settings().food(ModFoodComponents.CANDY_CANE, ModFoodComponents.CANDY_CANE_EFFECT)));
+        CANDY_CANE = registerItem("candy_cane", new Item(new Item.Settings().food(ModFoodComponents.CANDY_CANE)));
 
-        CANDY_CANE_SWORD = registerSwordItem("candy_cane_sword", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE, ModFoodComponents.CANDY_CANE_EFFECT));
-        CANDY_CANE_PICKAXE = registerPickaxeItem("candy_cane_pickaxe", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE, ModFoodComponents.CANDY_CANE_EFFECT));
-        CANDY_CANE_SHOVEL = registerShovelItem("candy_cane_shovel", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE, ModFoodComponents.CANDY_CANE_EFFECT));
-        CANDY_CANE_AXE = registerAxeItem("candy_cane_axe", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE, ModFoodComponents.CANDY_CANE_EFFECT));
-        CANDY_CANE_HOE = registerHoeItem("candy_cane_hoe", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE, ModFoodComponents.CANDY_CANE_EFFECT));
-        CANDY_CANE_HAMMER = registerHammerItem("candy_cane_hammer", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE, ModFoodComponents.CANDY_CANE_EFFECT));
-        CANDY_CANE_BOW = registerItem("candy_cane_bow", new EdibleBowItem(ModToolMaterials.CANDY_CANE, ModFoodComponents.CANDY_CANE, false,new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FunkyWeapons.MOD_ID, "candy_cane_bow")))){
+        CANDY_CANE_SWORD = registerSwordItem("candy_cane_sword", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE));
+        CANDY_CANE_PICKAXE = registerPickaxeItem("candy_cane_pickaxe", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE));
+        CANDY_CANE_SHOVEL = registerShovelItem("candy_cane_shovel", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE));
+        CANDY_CANE_AXE = registerAxeItem("candy_cane_axe", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE));
+        CANDY_CANE_HOE = registerHoeItem("candy_cane_hoe", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE));
+        CANDY_CANE_HAMMER = registerHammerItem("candy_cane_hammer", ModToolMaterials.CANDY_CANE, new Item.Settings().food(ModFoodComponents.CANDY_CANE));
+        CANDY_CANE_BOW = registerItem("candy_cane_bow", new EdibleBowItem(ModToolMaterials.CANDY_CANE, ModFoodComponents.CANDY_CANE, false, new Item.Settings()){
             @Override
             public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
                 tooltip.add(Text.translatable("item.funkyweapons.candy_cane_bow.tooltip0").formatted(Formatting.RED));
@@ -236,21 +236,21 @@ public class ModItems {
             }
         });
 
-        CHAINSAW = registerItem("chainsaw", new ChainsawItem(ToolMaterial.IRON, 7, -1.2F,new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FunkyWeapons.MOD_ID, "chainsaw")))));
+        CHAINSAW = registerItem("chainsaw", new ChainsawItem(ToolMaterials.IRON, 7, -1.2F,new Item.Settings()));
 
-        WOODEN_HAMMER = registerHammerItem("wooden_hammer", ToolMaterial.WOOD);
-        STONE_HAMMER = registerHammerItem("stone_hammer", ToolMaterial.STONE);
-        IRON_HAMMER = registerHammerItem("iron_hammer", ToolMaterial.IRON);
-        GOLD_HAMMER = registerHammerItem("gold_hammer", ToolMaterial.GOLD);
-        DIAMOND_HAMMER = registerHammerItem("diamond_hammer", ToolMaterial.DIAMOND);
-        NETHERITE_HAMMER = registerHammerItem("netherite_hammer", ToolMaterial.NETHERITE, new Item.Settings().fireproof());
+        WOODEN_HAMMER = registerHammerItem("wooden_hammer", ToolMaterials.WOOD);
+        STONE_HAMMER = registerHammerItem("stone_hammer", ToolMaterials.STONE);
+        IRON_HAMMER = registerHammerItem("iron_hammer", ToolMaterials.IRON);
+        GOLD_HAMMER = registerHammerItem("gold_hammer", ToolMaterials.GOLD);
+        DIAMOND_HAMMER = registerHammerItem("diamond_hammer", ToolMaterials.DIAMOND);
+        NETHERITE_HAMMER = registerHammerItem("netherite_hammer", ToolMaterials.NETHERITE, new Item.Settings().fireproof());
 
-        WOODEN_MACUAHUITL = registerMacuahuitlItem("wooden_macuahuitl", ToolMaterial.WOOD);
-        STONE_MACUAHUITL = registerMacuahuitlItem("stone_macuahuitl", ToolMaterial.STONE);
-        IRON_MACUAHUITL = registerMacuahuitlItem("iron_macuahuitl", ToolMaterial.IRON);
-        GOLD_MACUAHUITL = registerMacuahuitlItem("gold_macuahuitl", ToolMaterial.GOLD);
-        DIAMOND_MACUAHUITL = registerMacuahuitlItem("diamond_macuahuitl", ToolMaterial.DIAMOND);
-        NETHERITE_MACUAHUITL = registerMacuahuitlItem("netherite_macuahitl", ToolMaterial.NETHERITE, new Item.Settings().fireproof());
+        WOODEN_MACUAHUITL = registerMacuahuitlItem("wooden_macuahuitl", ToolMaterials.WOOD);
+        STONE_MACUAHUITL = registerMacuahuitlItem("stone_macuahuitl", ToolMaterials.STONE);
+        IRON_MACUAHUITL = registerMacuahuitlItem("iron_macuahuitl", ToolMaterials.IRON);
+        GOLD_MACUAHUITL = registerMacuahuitlItem("gold_macuahuitl", ToolMaterials.GOLD);
+        DIAMOND_MACUAHUITL = registerMacuahuitlItem("diamond_macuahuitl", ToolMaterials.DIAMOND);
+        NETHERITE_MACUAHUITL = registerMacuahuitlItem("netherite_macuahitl", ToolMaterials.NETHERITE, new Item.Settings().fireproof());
         OBSIDIAN_MACUAHUITL = registerMacuahuitlItem("obsidian_macuahuitl", ModToolMaterials.OBSIDIAN, new Item.Settings().fireproof());
         TURQUOISE_OBSIDIAN_MACUAHUITL = registerMacuahuitlItem("turquoise_obsidian_macuahuitl", ModToolMaterials.TURQUOISE_OBSIDIAN, new Item.Settings().fireproof());
 
