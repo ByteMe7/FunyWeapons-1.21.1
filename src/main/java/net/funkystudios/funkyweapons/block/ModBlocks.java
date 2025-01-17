@@ -2,11 +2,13 @@ package net.funkystudios.funkyweapons.block;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.funkystudios.funkyweapons.FunkyWeapons;
-import net.funkystudios.funkyweapons.block.custom.ApacheTearsCauldronBlock;
-import net.funkystudios.funkyweapons.block.custom.ObsidianTearsCauldronBlock;
-import net.funkystudios.funkyweapons.block.custom.RustyWaterCauldronBlock;
+import net.funkystudios.funkyweapons.block.custom.CustomFluidBlock;
+import net.funkystudios.funkyweapons.block.custom.cauldron.ApacheTearsCauldronBlock;
+import net.funkystudios.funkyweapons.block.custom.cauldron.ObsidianTearsCauldronBlock;
+import net.funkystudios.funkyweapons.block.custom.cauldron.RustyWaterCauldronBlock;
 import net.funkystudios.funkyweapons.block.custom.TurquoiseObsidianBlock;
 import net.funkystudios.funkyweapons.fluid.ModFluids;
+import net.funkystudios.funkyweapons.util.Constants.Colors;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -78,11 +80,11 @@ public class ModBlocks {
         TURQUOISE_ORE = registerBlock("turquoise_ore", new ExperienceDroppingBlock(UniformIntProvider.create(2,5), AbstractBlock.Settings.copy(Blocks.COPPER_ORE)));
         DEEPSLATE_TURQUOISE_ORE = registerBlock("deepslate_turquoise_ore", new ExperienceDroppingBlock(UniformIntProvider.create(2,5), AbstractBlock.Settings.copy(Blocks.DEEPSLATE_COPPER_ORE)));
 
-        APACHE_TEARS_FLUID_BLOCK = registerBlockWithoutBlockItem("apache_tears_fluid_block", new FluidBlock(ModFluids.APACHE_TEARS_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
+        APACHE_TEARS_FLUID_BLOCK = registerBlockWithoutBlockItem("apache_tears_fluid_block", new CustomFluidBlock(Colors.APACHE_TEARS.getIntColor(), ModFluids.APACHE_TEARS_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
         APACHE_TEAR_CAULDRON = registerBlockWithoutBlockItem("apache_tears_cauldron_block", new ApacheTearsCauldronBlock());
-        OBSIDIAN_TEARS_FLUID_BLOCK = registerBlockWithoutBlockItem("obsidian_tears_fluid_block", new FluidBlock(ModFluids.OBSIDIAN_TEARS_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
+        OBSIDIAN_TEARS_FLUID_BLOCK = registerBlockWithoutBlockItem("obsidian_tears_fluid_block", new CustomFluidBlock(Colors.OBSIDIAN_TEARS.getIntColor(), ModFluids.OBSIDIAN_TEARS_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
         OBSIDIAN_TEAR_CAULDRON = registerBlockWithoutBlockItem("obsidian_tears_cauldron_block", new ObsidianTearsCauldronBlock());
-        RUSTY_WATER_FLUID_BLOCK = registerBlockWithoutBlockItem("rusty_water_fluid_block", new FluidBlock(ModFluids.RUSTY_WATER_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
+        RUSTY_WATER_FLUID_BLOCK = registerBlockWithoutBlockItem("rusty_water_fluid_block", new CustomFluidBlock(Colors.RUSTY_WATER.getIntColor(), ModFluids.RUSTY_WATER_STILL, AbstractBlock.Settings.copy(Blocks.WATER)));
         RUSTY_WATER_CAULDRON = registerBlockWithoutBlockItem("rusty_water_cauldron_block", new RustyWaterCauldronBlock());
     }
 }

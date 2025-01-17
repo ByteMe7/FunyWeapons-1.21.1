@@ -1,4 +1,4 @@
-package net.funkystudios.funkyweapons.item;
+package net.funkystudios.funkyweapons.item.utiil;
 
 import net.funkystudios.funkyweapons.util.Constants;
 

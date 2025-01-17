@@ -1,6 +1,6 @@
 package net.funkystudios.funkyweapons.item.custom;
 
-import net.funkystudios.funkyweapons.util.IColoredItem;
+import net.funkystudios.funkyweapons.item.utiil.IColoredItem;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BucketItem;
 

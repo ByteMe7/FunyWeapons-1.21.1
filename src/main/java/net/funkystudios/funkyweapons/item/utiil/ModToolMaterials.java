@@ -1,7 +1,8 @@
-package net.funkystudios.funkyweapons.item;
+package net.funkystudios.funkyweapons.item.utiil;
 
 import com.google.common.base.Suppliers;
 import net.funkystudios.funkyweapons.block.ModBlockTags;
+import net.funkystudios.funkyweapons.item.utiil.ModItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterial;

@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.funkystudios.funkyweapons.FunkyWeapons;
 import net.funkystudios.funkyweapons.fluid.ModFluids;
 import net.funkystudios.funkyweapons.item.custom.*;
+import net.funkystudios.funkyweapons.item.utiil.ModFoodComponents;
+import net.funkystudios.funkyweapons.item.utiil.ModToolMaterials;
 import net.funkystudios.funkyweapons.util.Constants.Colors;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;

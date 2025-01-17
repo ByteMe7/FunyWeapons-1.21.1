@@ -2,12 +2,14 @@ package net.funkystudios.funkyweapons;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.funkystudios.funkyweapons.alchemy.potion.ModPotions;
 import net.funkystudios.funkyweapons.block.ModBlocks;
-import net.funkystudios.funkyweapons.fluid.ModFluids;
+import net.funkystudios.funkyweapons.entity.ModEntities;
 import net.funkystudios.funkyweapons.item.ModItemGroups;
 import net.funkystudios.funkyweapons.item.ModItems;
 import net.funkystudios.funkyweapons.particle.ModParticles;
+import net.funkystudios.funkyweapons.util.ExpandedMiningToolUsageEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,10 +27,9 @@ public class FunkyWeapons implements ModInitializer {
 		ModItems.register();
 		ModItemGroups.register();
 		ModPotions.register();
-
-
+		ModEntities.register();
 		ModParticles.registerParticles();
 
-		LOGGER.info("Hello Fabric world!");
+		PlayerBlockBreakEvents.BEFORE.register(new ExpandedMiningToolUsageEvent());
 	}
 }
