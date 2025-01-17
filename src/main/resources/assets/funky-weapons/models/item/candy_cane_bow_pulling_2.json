@@ -1,0 +1,6 @@
+{
+  "parent": "funkyweapons:item/candy_cane_bow",
+  "textures": {
+    "layer0": "funkyweapons:item/candy_cane_bow_pulling_2"
+  }
+}

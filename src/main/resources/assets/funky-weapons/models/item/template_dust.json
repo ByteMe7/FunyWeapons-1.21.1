@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "funkyweapons:item/colorable_dust_texture"
+  }
+}
